@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de Cadastros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='_css/style.css') }}">
 </head>
+
 <body>
-    
-<h2>Lista de Pessoas</h2>
-<ul>
-  {% for p in pessoas %}
-    <li>{{ p["nome"] }} - {{ p["idade"] }} anos - {{ p["cidade"] }}</li>
-  {% endfor %}
-</ul>
-
-
+    <div class="container">
+        <h2>Pessoas Cadastradas</h2>
+        {% if pessoas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Cidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pessoa in pessoas %}
+                <tr>
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.idade }}</td>
+                    <td>{{ pessoa.cidade }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Nenhum cadastro encontrado.</p>
+        {% endif %}
+        <p><a href="{{ url_for('index') }}">Voltar para o Formulário</a></p>
+    </div>
 </body>
+
 </html>
